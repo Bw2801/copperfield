@@ -5,12 +5,11 @@
   <parent>
     <artifactId>copperfield</artifactId>
     <groupId>dev.volix.rewinside.odyssey.common</groupId>
-    <version>2.0.1</version>
+    <version>3.0.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>copperfield-core</artifactId>
-  <version>2.0.1</version>
 
   <properties>
     <maven.compiler.source>8</maven.compiler.source>
