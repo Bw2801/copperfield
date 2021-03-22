@@ -5,7 +5,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>dev.volix.rewinside.odyssey.common</groupId>
+  <groupId>dev.benedikt</groupId>
   <artifactId>copperfield</artifactId>
   <packaging>pom</packaging>
   <version>3.0.0</version>

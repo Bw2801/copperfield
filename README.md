@@ -12,7 +12,7 @@ Import the `copperfield-core` module at the very least.
 
 ```xml
 <dependency>
-  <groupId>dev.volix.rewinside.odyssey.common</groupId>
+  <groupId>dev.benedikt</groupId>
   <artifactId>copperfield-core</artifactId>
   <version>2.0.0</version>
 </dependency>
@@ -24,7 +24,7 @@ If you want to convert data from and to [bson documents](#bson-conversion), impo
 
 ```xml
 <dependency>
-  <groupId>dev.volix.rewinside.odyssey.common</groupId>
+  <groupId>dev.benedikt</groupId>
   <artifactId>copperfield-bson</artifactId>
   <version>2.0.0</version>
 </dependency>
@@ -36,7 +36,7 @@ If you want to convert data from and to [proto messages](#proto-conversion), imp
 
 ```xml
 <dependency>
-  <groupId>dev.volix.rewinside.odyssey.common</groupId>
+  <groupId>dev.benedikt</groupId>
   <artifactId>copperfield-proto</artifactId>
   <version>2.0.0</version>
 </dependency>
