@@ -5,13 +5,13 @@ import dev.benedikt.copperfield.bson.converter.BsonObjectIdToStringConverter
 import dev.benedikt.copperfield.bson.converter.ByteArrayToBsonBinaryConverter
 import dev.benedikt.copperfield.bson.converter.CopperToBsonConverter
 import dev.benedikt.copperfield.bson.registry.BsonRegistry.Companion.BSON_CONTEXT
-import dev.volix.rewinside.odyssey.common.copperfield.converter.NoOperationConverter
-import dev.volix.rewinside.odyssey.common.copperfield.registry.Registry
+import dev.benedikt.copperfield.converter.NoOperationConverter
+import dev.benedikt.copperfield.registry.Registry
 import org.bson.Document
 import org.bson.types.ObjectId
 
 /**
- * Provides the default [dev.volix.rewinside.odyssey.common.copperfield.converter.Converter]s for the bson context:
+ * Provides the default [dev.benedikt.copperfield.converter.Converter]s for the bson context:
  *  - [ByteArray] using [ByteArrayToBsonBinaryConverter]
  *  - [CopperConvertable] using [CopperToBsonConverter]
  *
@@ -31,7 +31,7 @@ class BsonRegistry : Registry() {
 
     init {
         this.with(ByteArray::class.java, ByteArrayToBsonBinaryConverter::class.java, BSON_CONTEXT)
-        this.with(dev.benedikt.copperfield.CopperConvertable::class.java, CopperToBsonConverter::class.java, BSON_CONTEXT)
+        this.with(CopperConvertable::class.java, CopperToBsonConverter::class.java, BSON_CONTEXT)
         this.with(ObjectId::class.java, NoOperationConverter::class.java, BSON_CONTEXT)
 
         // Support for cross conversions.

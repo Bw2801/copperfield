@@ -1,14 +1,14 @@
 package dev.benedikt.copperfield.registry
 
-import dev.volix.rewinside.odyssey.common.copperfield.converter.Converter
+import dev.benedikt.copperfield.converter.Converter
 
 /**
- * The registry defined the default [Converter]s used by the [dev.volix.rewinside.odyssey.common.copperfield.CopperfieldAgent] it is passed to.
+ * The registry defined the default [Converter]s used by the [dev.benedikt.copperfield.CopperfieldAgent] it is passed to.
  *
  * Each [Converter] can optionally be assigned to a given `context`. When providing a [Converter], the converters of the given `context` will be
  * preferred. If there is no matching [Converter], the registry will fall back to the default converters without a `context` defined.
  *
- * @see dev.volix.rewinside.odyssey.common.copperfield.CopperfieldAgent
+ * @see dev.benedikt.copperfield.CopperfieldAgent
  * @see Converter
  *
  * @author Benedikt Wüller

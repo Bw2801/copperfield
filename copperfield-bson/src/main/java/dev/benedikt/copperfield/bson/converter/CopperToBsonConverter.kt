@@ -1,10 +1,10 @@
 package dev.benedikt.copperfield.bson.converter
 
 import dev.benedikt.copperfield.CopperConvertable
-import dev.volix.rewinside.odyssey.common.copperfield.CopperTypeMapper
+import dev.benedikt.copperfield.CopperTypeMapper
 import dev.benedikt.copperfield.bson.annotation.CopperBsonField
-import dev.volix.rewinside.odyssey.common.copperfield.converter.Converter
-import dev.volix.rewinside.odyssey.common.copperfield.converter.CopperConvertableConverter
+import dev.benedikt.copperfield.converter.Converter
+import dev.benedikt.copperfield.converter.CopperConvertableConverter
 import org.bson.Document
 import java.lang.reflect.Field
 
@@ -19,7 +19,7 @@ import java.lang.reflect.Field
  */
 class CopperToBsonConverter : CopperConvertableConverter<Document>(Document::class.java) {
 
-    override fun createTheirInstance(type: Class<out Any>, ourType: Class<out dev.benedikt.copperfield.CopperConvertable>?): Document {
+    override fun createTheirInstance(type: Class<out Any>, ourType: Class<out CopperConvertable>?): Document {
         return Document()
     }
 
@@ -58,7 +58,7 @@ class CopperToBsonConverter : CopperConvertableConverter<Document>(Document::cla
         return super.getConverterType(type, field)
     }
 
-    override fun getTypeMapper(type: Class<out CopperTypeMapper<out dev.benedikt.copperfield.CopperConvertable, out dev.benedikt.copperfield.CopperConvertable>>, field: Field): Class<out CopperTypeMapper<out dev.benedikt.copperfield.CopperConvertable, out dev.benedikt.copperfield.CopperConvertable>> {
+    override fun getTypeMapper(type: Class<out CopperTypeMapper<out CopperConvertable, out CopperConvertable>>, field: Field): Class<out CopperTypeMapper<out CopperConvertable, out CopperConvertable>> {
         val annotation = field.getDeclaredAnnotation(CopperBsonField::class.java)
         if (annotation != null && annotation.typeMapper != CopperTypeMapper::class) return annotation.typeMapper.java
         return super.getTypeMapper(type, field)

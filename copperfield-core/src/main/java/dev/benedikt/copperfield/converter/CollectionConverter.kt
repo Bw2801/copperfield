@@ -1,7 +1,7 @@
 package dev.benedikt.copperfield.converter
 
-import dev.volix.rewinside.odyssey.common.copperfield.CopperfieldAgent
-import dev.volix.rewinside.odyssey.common.copperfield.ValueAware
+import dev.benedikt.copperfield.CopperfieldAgent
+import dev.benedikt.copperfield.ValueAware
 import dev.benedikt.copperfield.annotation.CopperCollectionType
 import java.lang.reflect.Field
 import java.util.ArrayList
@@ -12,7 +12,7 @@ import java.util.Stack
 
 /**
  * Converts [Collection]s to a new [Iterable] with transformed values based on the optional
- * [dev.volix.rewinside.odyssey.common.copperfield.annotation.CopperValueType.type] annotation.
+ * [dev.benedikt.copperfield.annotation.CopperValueType.type] annotation.
  *
  * @author Benedikt Wüller
  */

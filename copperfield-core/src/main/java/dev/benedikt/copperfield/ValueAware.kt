@@ -1,6 +1,6 @@
 package dev.benedikt.copperfield
 
-import dev.volix.rewinside.odyssey.common.copperfield.annotation.CopperValueType
+import dev.benedikt.copperfield.annotation.CopperValueType
 import java.lang.reflect.Field
 
 /**

@@ -1,9 +1,9 @@
 package dev.benedikt.copperfield
 
-import dev.volix.rewinside.odyssey.common.copperfield.converter.Converter
-import dev.volix.rewinside.odyssey.common.copperfield.exception.CopperFieldException
-import dev.volix.rewinside.odyssey.common.copperfield.registry.BaseRegistry
-import dev.volix.rewinside.odyssey.common.copperfield.registry.Registry
+import dev.benedikt.copperfield.converter.Converter
+import dev.benedikt.copperfield.exception.CopperFieldException
+import dev.benedikt.copperfield.registry.BaseRegistry
+import dev.benedikt.copperfield.registry.Registry
 import java.lang.reflect.Field
 
 /**

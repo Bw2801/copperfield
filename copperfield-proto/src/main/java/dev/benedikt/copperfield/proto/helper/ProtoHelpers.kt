@@ -10,7 +10,7 @@ import com.google.protobuf.NullValue
 import com.google.protobuf.StringValue
 import com.google.protobuf.Struct
 import com.google.protobuf.Value
-import dev.volix.rewinside.odyssey.common.copperfield.exception.CopperFieldException
+import dev.benedikt.copperfield.exception.CopperFieldException
 
 /**
  * @author Benedikt Wüller

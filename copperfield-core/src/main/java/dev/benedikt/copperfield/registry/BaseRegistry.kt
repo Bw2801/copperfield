@@ -1,17 +1,17 @@
 package dev.benedikt.copperfield.registry
 
-import dev.volix.rewinside.odyssey.common.copperfield.converter.CollectionConverter
-import dev.volix.rewinside.odyssey.common.copperfield.converter.EnumToStringConverter
-import dev.volix.rewinside.odyssey.common.copperfield.converter.MapConverter
-import dev.volix.rewinside.odyssey.common.copperfield.converter.NumberConverter
-import dev.volix.rewinside.odyssey.common.copperfield.converter.OffsetDateTimeToStringConverter
-import dev.volix.rewinside.odyssey.common.copperfield.converter.UuidToStringConverter
+import dev.benedikt.copperfield.converter.CollectionConverter
+import dev.benedikt.copperfield.converter.EnumToStringConverter
+import dev.benedikt.copperfield.converter.MapConverter
+import dev.benedikt.copperfield.converter.NumberConverter
+import dev.benedikt.copperfield.converter.OffsetDateTimeToStringConverter
+import dev.benedikt.copperfield.converter.UuidToStringConverter
 import java.time.OffsetDateTime
 import java.util.UUID
 
 /**
- * The base registry contains the default converters always present in every [dev.volix.rewinside.odyssey.common.copperfield.CopperfieldAgent] by
- * default. It consists of the following [dev.volix.rewinside.odyssey.common.copperfield.converter.Converter]s:
+ * The base registry contains the default converters always present in every [dev.benedikt.copperfield.CopperfieldAgent] by
+ * default. It consists of the following [dev.benedikt.copperfield.converter.Converter]s:
  *  - [Collection] using [CollectionConverter]
  *  - [Map] using [MapConverter]
  *  - [Number] using [NumberConverter]

@@ -1,8 +1,8 @@
 package dev.benedikt.copperfield.proto.converter
 
 import com.google.protobuf.Timestamp
-import dev.volix.rewinside.odyssey.common.copperfield.CopperfieldAgent
-import dev.volix.rewinside.odyssey.common.copperfield.converter.Converter
+import dev.benedikt.copperfield.CopperfieldAgent
+import dev.benedikt.copperfield.converter.Converter
 import java.lang.reflect.Field
 import java.time.Instant
 import java.time.OffsetDateTime

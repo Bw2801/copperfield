@@ -1,15 +1,15 @@
 package dev.benedikt.copperfield.converter
 
-import dev.volix.rewinside.odyssey.common.copperfield.CopperfieldAgent
-import dev.volix.rewinside.odyssey.common.copperfield.KeyAware
-import dev.volix.rewinside.odyssey.common.copperfield.ValueAware
+import dev.benedikt.copperfield.CopperfieldAgent
+import dev.benedikt.copperfield.KeyAware
+import dev.benedikt.copperfield.ValueAware
 import dev.benedikt.copperfield.annotation.CopperMapType
 import java.lang.reflect.Field
 
 /**
  * Converts [Map]s to a new [Map] with transformed keys and values based on the defined types in the optional
- * [dev.volix.rewinside.odyssey.common.copperfield.annotation.CopperKeyType] and
- * [dev.volix.rewinside.odyssey.common.copperfield.annotation.CopperValueType] annotations.
+ * [dev.benedikt.copperfield.annotation.CopperKeyType] and
+ * [dev.benedikt.copperfield.annotation.CopperValueType] annotations.
  *
  * @author Benedikt Wüller
  */

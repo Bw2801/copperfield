@@ -1,11 +1,11 @@
 package dev.benedikt.copperfield.proto.converter
 
 import com.google.protobuf.Struct
-import dev.volix.rewinside.odyssey.common.copperfield.CopperfieldAgent
-import dev.volix.rewinside.odyssey.common.copperfield.converter.Converter
-import dev.volix.rewinside.odyssey.common.copperfield.converter.MapConverter
-import dev.volix.rewinside.odyssey.common.copperfield.proto.helper.convertMapToStruct
-import dev.volix.rewinside.odyssey.common.copperfield.proto.helper.convertStructToMap
+import dev.benedikt.copperfield.CopperfieldAgent
+import dev.benedikt.copperfield.converter.Converter
+import dev.benedikt.copperfield.converter.MapConverter
+import dev.benedikt.copperfield.proto.helper.convertMapToStruct
+import dev.benedikt.copperfield.proto.helper.convertStructToMap
 import java.lang.reflect.Field
 
 /**
@@ -20,8 +20,8 @@ import java.lang.reflect.Field
  * of the types above when converting [toOurs].
  *
  * If you need to support rich or custom key/value types, define a custom [Converter] using either the
- * [dev.volix.rewinside.odyssey.common.copperfield.annotation.CopperField] or
- * [dev.volix.rewinside.odyssey.common.copperfield.proto.annotation.CopperProtoField] annotation.
+ * [dev.benedikt.copperfield.annotation.CopperField] or
+ * [dev.benedikt.copperfield.proto.annotation.CopperProtoField] annotation.
  *
  * @author Benedikt Wüller
  */

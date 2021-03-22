@@ -8,7 +8,7 @@ package dev.benedikt.copperfield.annotation
  *
  * @see CopperField
  * @see CopperIgnore
- * @see dev.volix.rewinside.odyssey.common.copperfield.converter.CopperConvertableConverter
+ * @see dev.benedikt.copperfield.converter.CopperConvertableConverter
  *
  * @author Benedikt Wüller
  */

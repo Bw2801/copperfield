@@ -1,15 +1,15 @@
 package dev.benedikt.copperfield.proto.annotation
 
 import dev.benedikt.copperfield.CopperConvertable
-import dev.volix.rewinside.odyssey.common.copperfield.CopperTypeMapper
-import dev.volix.rewinside.odyssey.common.copperfield.converter.Converter
+import dev.benedikt.copperfield.CopperTypeMapper
+import dev.benedikt.copperfield.converter.Converter
 import kotlin.reflect.KClass
 
 /**
- * Equals the functionality of [dev.volix.rewinside.odyssey.common.copperfield.annotation.CopperField]s but can override one or multiple arguments
- * of the [dev.volix.rewinside.odyssey.common.copperfield.annotation.CopperField] for the proto context only.
+ * Equals the functionality of [dev.benedikt.copperfield.annotation.CopperField]s but can override one or multiple arguments
+ * of the [dev.benedikt.copperfield.annotation.CopperField] for the proto context only.
  *
- * @see dev.volix.rewinside.odyssey.common.copperfield.annotation.CopperField
+ * @see dev.benedikt.copperfield.annotation.CopperField
  *
  * @author Benedikt Wüller
  */
@@ -17,4 +17,4 @@ import kotlin.reflect.KClass
 @Retention(AnnotationRetention.RUNTIME)
 annotation class CopperProtoField(val name: String = "",
                                   val converter: KClass<out Converter<out Any, out Any>> = Converter::class,
-                                  val typeMapper: KClass<out CopperTypeMapper<out dev.benedikt.copperfield.CopperConvertable, out dev.benedikt.copperfield.CopperConvertable>> = CopperTypeMapper::class)
+                                  val typeMapper: KClass<out CopperTypeMapper<out CopperConvertable, out CopperConvertable>> = CopperTypeMapper::class)

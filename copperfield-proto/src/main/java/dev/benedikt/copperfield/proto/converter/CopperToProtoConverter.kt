@@ -7,20 +7,20 @@ import com.google.protobuf.Struct
 import com.google.protobuf.StructOrBuilder
 import com.google.protobuf.Value
 import dev.benedikt.copperfield.CopperConvertable
-import dev.volix.rewinside.odyssey.common.copperfield.CopperTypeMapper
-import dev.volix.rewinside.odyssey.common.copperfield.converter.Converter
-import dev.volix.rewinside.odyssey.common.copperfield.converter.CopperConvertableConverter
-import dev.volix.rewinside.odyssey.common.copperfield.helper.convertToType
-import dev.volix.rewinside.odyssey.common.copperfield.helper.getAnnotation
-import dev.volix.rewinside.odyssey.common.copperfield.helper.getOrPut
-import dev.volix.rewinside.odyssey.common.copperfield.helper.snakeToPascalCase
-import dev.volix.rewinside.odyssey.common.copperfield.proto.annotation.CopperProtoClass
-import dev.volix.rewinside.odyssey.common.copperfield.proto.annotation.CopperProtoField
-import dev.volix.rewinside.odyssey.common.copperfield.proto.helper.convertFromStructValue
-import dev.volix.rewinside.odyssey.common.copperfield.proto.helper.convertFromValue
-import dev.volix.rewinside.odyssey.common.copperfield.proto.helper.convertToStructValue
-import dev.volix.rewinside.odyssey.common.copperfield.proto.helper.convertToValue
-import dev.volix.rewinside.odyssey.common.copperfield.proto.helper.getBaseValueType
+import dev.benedikt.copperfield.CopperTypeMapper
+import dev.benedikt.copperfield.converter.Converter
+import dev.benedikt.copperfield.converter.CopperConvertableConverter
+import dev.benedikt.copperfield.helper.convertToType
+import dev.benedikt.copperfield.helper.getAnnotation
+import dev.benedikt.copperfield.helper.getOrPut
+import dev.benedikt.copperfield.helper.snakeToPascalCase
+import dev.benedikt.copperfield.proto.annotation.CopperProtoClass
+import dev.benedikt.copperfield.proto.annotation.CopperProtoField
+import dev.benedikt.copperfield.proto.helper.convertFromStructValue
+import dev.benedikt.copperfield.proto.helper.convertFromValue
+import dev.benedikt.copperfield.proto.helper.convertToStructValue
+import dev.benedikt.copperfield.proto.helper.convertToValue
+import dev.benedikt.copperfield.proto.helper.getBaseValueType
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 import java.util.concurrent.TimeUnit
@@ -55,7 +55,7 @@ class CopperToProtoConverter : CopperConvertableConverter<MessageLiteOrBuilder>(
         .expireAfterAccess(5, TimeUnit.MINUTES)
         .build<Triple<String, Class<*>, Class<*>>, Method>()
 
-    override fun createTheirInstance(type: Class<out Any>, ourType: Class<out dev.benedikt.copperfield.CopperConvertable>?): MessageLiteOrBuilder {
+    override fun createTheirInstance(type: Class<out Any>, ourType: Class<out CopperConvertable>?): MessageLiteOrBuilder {
         val annotation = if (ourType == null) null else getAnnotation(ourType, CopperProtoClass::class.java)
         val protoType = annotation?.type?.java ?: type
 
@@ -176,13 +176,13 @@ class CopperToProtoConverter : CopperConvertableConverter<MessageLiteOrBuilder>(
         return super.getConverterType(type, field)
     }
 
-    override fun getTypeMapper(type: Class<out CopperTypeMapper<out dev.benedikt.copperfield.CopperConvertable, out dev.benedikt.copperfield.CopperConvertable>>, field: Field): Class<out CopperTypeMapper<out dev.benedikt.copperfield.CopperConvertable, out dev.benedikt.copperfield.CopperConvertable>> {
+    override fun getTypeMapper(type: Class<out CopperTypeMapper<out CopperConvertable, out CopperConvertable>>, field: Field): Class<out CopperTypeMapper<out CopperConvertable, out CopperConvertable>> {
         val annotation = field.getDeclaredAnnotation(CopperProtoField::class.java)
         if (annotation != null && annotation.typeMapper != CopperTypeMapper::class) return annotation.typeMapper.java
         return super.getTypeMapper(type, field)
     }
 
-    override fun getMappedContextType(type: Class<out dev.benedikt.copperfield.CopperConvertable>, contextType: Class<out Any>): Class<out Any> {
+    override fun getMappedContextType(type: Class<out CopperConvertable>, contextType: Class<out Any>): Class<out Any> {
         val annotation = getAnnotation(type, CopperProtoClass::class.java)
         return annotation?.type?.java ?: contextType
     }

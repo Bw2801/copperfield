@@ -1,7 +1,7 @@
 package dev.benedikt.copperfield.converter
 
-import dev.volix.rewinside.odyssey.common.copperfield.CopperfieldAgent
-import dev.volix.rewinside.odyssey.common.copperfield.helper.convertToType
+import dev.benedikt.copperfield.CopperfieldAgent
+import dev.benedikt.copperfield.helper.convertToType
 import java.lang.reflect.Field
 
 /**

@@ -9,7 +9,7 @@ import java.lang.reflect.Field
  *
  * @author Benedikt Wüller
  */
-abstract class CopperTypeMapper<Parent : dev.benedikt.copperfield.CopperConvertable, T : dev.benedikt.copperfield.CopperConvertable>(private vararg val requiredFields: String) {
+abstract class CopperTypeMapper<Parent : CopperConvertable, T : CopperConvertable>(private vararg val requiredFields: String) {
 
     /**
      * Maps the given [valueType] based on the populated instance based on the [requiredFields].

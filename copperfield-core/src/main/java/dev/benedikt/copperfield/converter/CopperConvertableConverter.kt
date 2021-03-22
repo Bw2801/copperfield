@@ -3,15 +3,14 @@ package dev.benedikt.copperfield.converter
 import com.google.common.cache.CacheBuilder
 import dev.benedikt.copperfield.CopperConvertable
 import dev.benedikt.copperfield.CopperFieldDefinition
-import dev.volix.rewinside.odyssey.common.copperfield.CopperTypeMapper
-import dev.volix.rewinside.odyssey.common.copperfield.CopperfieldAgent
-import dev.volix.rewinside.odyssey.common.copperfield.annotation.CopperField
-import dev.volix.rewinside.odyssey.common.copperfield.annotation.CopperFields
-import dev.benedikt.copperfield.annotation.CopperIgnore
-import dev.volix.rewinside.odyssey.common.copperfield.exception.CopperFieldException
-import dev.volix.rewinside.odyssey.common.copperfield.helper.camelToSnakeCase
-import dev.volix.rewinside.odyssey.common.copperfield.helper.getAnnotation
-import dev.volix.rewinside.odyssey.common.copperfield.helper.getOrPut
+import dev.benedikt.copperfield.CopperTypeMapper
+import dev.benedikt.copperfield.CopperfieldAgent
+import dev.benedikt.copperfield.annotation.CopperField
+import dev.benedikt.copperfield.annotation.CopperFields
+import dev.benedikt.copperfield.exception.CopperFieldException
+import dev.benedikt.copperfield.helper.camelToSnakeCase
+import dev.benedikt.copperfield.helper.getAnnotation
+import dev.benedikt.copperfield.helper.getOrPut
 import java.lang.reflect.Field
 import java.util.concurrent.TimeUnit
 
@@ -23,16 +22,16 @@ import java.util.concurrent.TimeUnit
  *
  * @author Benedikt Wüller
  */
-abstract class CopperConvertableConverter<T : Any>(theirType: Class<T>) : Converter<dev.benedikt.copperfield.CopperConvertable, T>(dev.benedikt.copperfield.CopperConvertable::class.java, theirType) {
+abstract class CopperConvertableConverter<T : Any>(theirType: Class<T>) : Converter<CopperConvertable, T>(CopperConvertable::class.java, theirType) {
 
     /**
      * Caches field definitions by class types.
      */
     private val fieldDefinitions = CacheBuilder.newBuilder()
         .expireAfterAccess(5, TimeUnit.MINUTES)
-        .build<Class<out Any>, List<_root_ide_package_.dev.benedikt.copperfield.CopperFieldDefinition>>()
+        .build<Class<out Any>, List<CopperFieldDefinition>>()
 
-    override fun toTheirs(value: dev.benedikt.copperfield.CopperConvertable?, agent: CopperfieldAgent, ourType: Class<out dev.benedikt.copperfield.CopperConvertable>, contextType: Class<out Any>, field: Field?): T? {
+    override fun toTheirs(value: CopperConvertable?, agent: CopperfieldAgent, ourType: Class<out CopperConvertable>, contextType: Class<out Any>, field: Field?): T? {
         val instance = this.createTheirInstance(contextType, value?.javaClass)
 
         // If the value is null, there are no field we can get the values of.
@@ -44,7 +43,7 @@ abstract class CopperConvertableConverter<T : Any>(theirType: Class<T>) : Conver
                     val fieldType = fieldValue?.javaClass ?: it.field.type
 
                     @Suppress("UNCHECKED_CAST")
-                    val typeMapper = it.typeMapper as CopperTypeMapper<dev.benedikt.copperfield.CopperConvertable, dev.benedikt.copperfield.CopperConvertable>?
+                    val typeMapper = it.typeMapper as CopperTypeMapper<CopperConvertable, CopperConvertable>?
 
                     val mappedType = typeMapper?.mapType(value, fieldType) ?: fieldType
                     val converter = agent.findConverter(mappedType, it.converter, contextType)
@@ -68,7 +67,7 @@ abstract class CopperConvertableConverter<T : Any>(theirType: Class<T>) : Conver
         return this.finalizeTheirInstance(instance)
     }
 
-    override fun toOurs(value: T?, agent: CopperfieldAgent, ourType: Class<out dev.benedikt.copperfield.CopperConvertable>, contextType: Class<out Any>, field: Field?): dev.benedikt.copperfield.CopperConvertable? {
+    override fun toOurs(value: T?, agent: CopperfieldAgent, ourType: Class<out CopperConvertable>, contextType: Class<out Any>, field: Field?): CopperConvertable? {
         val instance = this.createOurInstance(ourType)
         instance.onBeforeTheirsToOurs()
 
@@ -79,7 +78,7 @@ abstract class CopperConvertableConverter<T : Any>(theirType: Class<T>) : Conver
                     val fieldType = it.field.type
 
                     @Suppress("UNCHECKED_CAST")
-                    val typeMapper = it.typeMapper as CopperTypeMapper<dev.benedikt.copperfield.CopperConvertable, dev.benedikt.copperfield.CopperConvertable>?
+                    val typeMapper = it.typeMapper as CopperTypeMapper<CopperConvertable, CopperConvertable>?
 
                     val mappedType = typeMapper?.mapType(instance, fieldType) ?: fieldType
                     val converter = agent.findConverter(mappedType, it.converter, contextType)
@@ -113,7 +112,7 @@ abstract class CopperConvertableConverter<T : Any>(theirType: Class<T>) : Conver
     /**
      * Returns all [CopperFieldDefinition] for this [type] and all it's supertypes which are not ignored for the context of [theirType].
      */
-    private fun <T : Any> getCopperFields(type: Class<out T>, theirType: Class<out Any>): List<_root_ide_package_.dev.benedikt.copperfield.CopperFieldDefinition> {
+    private fun <T : Any> getCopperFields(type: Class<out T>, theirType: Class<out Any>): List<CopperFieldDefinition> {
         return this.fieldDefinitions.getOrPut(type) {
             // Find all declared fields including those of the supertypes.
             this.getDeclaredFields(type)
@@ -127,7 +126,7 @@ abstract class CopperConvertableConverter<T : Any>(theirType: Class<T>) : Conver
                     val typeMapperType = this.getTypeMapper(annotation?.typeMapper?.java ?: CopperTypeMapper::class.java, it)
                     val typeMapper = if (typeMapperType == CopperTypeMapper::class.java) null else typeMapperType.newInstance()
 
-                    return@map _root_ide_package_.dev.benedikt.copperfield.CopperFieldDefinition(
+                    return@map CopperFieldDefinition(
                         it,
                         this.getName(name, it),
                         converterType,
@@ -196,17 +195,17 @@ abstract class CopperConvertableConverter<T : Any>(theirType: Class<T>) : Conver
     /**
      * Creates a new instance of [type].
      */
-    protected open fun <T : dev.benedikt.copperfield.CopperConvertable> createOurInstance(type: Class<T>): T = type.newInstance()
+    protected open fun <T : CopperConvertable> createOurInstance(type: Class<T>): T = type.newInstance()
 
     /**
      * Performs finalization on the instance created by [createOurInstance] and returns either the same or a new instance afterwards.
      */
-    protected open fun finalizeOurInstance(instance: dev.benedikt.copperfield.CopperConvertable) = instance
+    protected open fun finalizeOurInstance(instance: CopperConvertable) = instance
 
     /**
      * Creates a new instance of [type] based on [ourType].
      */
-    protected abstract fun createTheirInstance(type: Class<out Any>, ourType: Class<out dev.benedikt.copperfield.CopperConvertable>?): T
+    protected abstract fun createTheirInstance(type: Class<out Any>, ourType: Class<out CopperConvertable>?): T
 
     /**
      * Performs finalization on the instance created by [createTheirInstance] and returns either the same or a new instance afterwards.
@@ -236,11 +235,11 @@ abstract class CopperConvertableConverter<T : Any>(theirType: Class<T>) : Conver
     /**
      * Returns the final [CopperTypeMapper] type based on the default [type] of the given [field].
      */
-    protected open fun getTypeMapper(type: Class<out CopperTypeMapper<out dev.benedikt.copperfield.CopperConvertable, out dev.benedikt.copperfield.CopperConvertable>>, field: Field): Class<out CopperTypeMapper<out dev.benedikt.copperfield.CopperConvertable, out dev.benedikt.copperfield.CopperConvertable>> = type
+    protected open fun getTypeMapper(type: Class<out CopperTypeMapper<out CopperConvertable, out CopperConvertable>>, field: Field): Class<out CopperTypeMapper<out CopperConvertable, out CopperConvertable>> = type
 
     /**
      * Maps and returns a concrete type based on the instance [type] and the current [contextType].
      */
-    protected open fun getMappedContextType(type: Class<out dev.benedikt.copperfield.CopperConvertable>, contextType: Class<out Any>): Class<out Any> = contextType
+    protected open fun getMappedContextType(type: Class<out CopperConvertable>, contextType: Class<out Any>): Class<out Any> = contextType
 
 }
